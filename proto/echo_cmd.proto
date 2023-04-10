@@ -1,0 +1,27 @@
+syntax = "proto3";
+package echo.cmd.v1;
+option go_package = "github.com/talbright/cobrapf/cmd/echo";
+
+message Error {
+  string error = 1;
+}
+
+message Output {
+  string stdout = 1;
+  string stderr = 2;
+}
+
+message Results {
+  Output output = 1;
+  Error error = 2;
+}
+
+message EchoParams {
+  string text = 1;
+  bool dryRun = 2;
+  int32 count = 3;
+}
+
+service EchoCmd {
+  rpc Echo(EchoParams) returns (Results) { }
+}
